@@ -1,0 +1,6 @@
+{
+  "name": "Little Tripoli",
+  "description": "Sito web ufficiale di Little Tripoli, storico ristorante tripolino kosher a Roma. Cucina libica autentica dal 2013.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,916 @@
+/* 
+   Little Tripoli - Oriental & Refined Aesthetic
+   Dark Green (#002b23), Gold (#d4af37), Arched frames, Cormorant Garamond & Cinzel
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    --green: #002b23;
+    --green-light: #004d3f;
+    --green-dark: #001813;
+    --gold: #d4af37;
+    --gold-light: #f1e5ac;
+    --cream: #fdfbf7;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --text: #1a1a1a;
+    --text-muted: #555555;
+    --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: var(--cream);
+    color: var(--text);
+    line-height: 1.75;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l2.5 7.5L40 10l-7.5 2.5L30 20l-2.5-7.5L20 10l7.5-2.5L30 0zm0 40l2.5 7.5L40 50l-7.5 2.5L30 60l-2.5-7.5L20 50l7.5-2.5L30 40zM0 30l7.5-2.5L10 20l2.5 7.5L20 30l-7.5 2.5L10 40l-2.5-7.5L0 30zM40 30l7.5-2.5L50 20l2.5 7.5L60 30l-7.5 2.5L50 40l-2.5-7.5L40 30z' fill='%23d4af37' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+body.nav-open {
+    overflow: hidden;
+}
+
+h1, h2, h3, .logo-text {
+    font-family: 'Cinzel', serif;
+    color: var(--green);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.15rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--green);
+    color: var(--gold);
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border-bottom: 3px solid var(--gold);
+}
+
+nav {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.logo-text:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    padding: 0.5rem 0;
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Language Switcher */
+.lang-switcher {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border-left: 1px solid rgba(197, 160, 89, 0.4);
+    padding-left: 2rem;
+}
+
+.lang-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.65;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.lang-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lang-btn:hover, .lang-btn.active {
+    opacity: 1;
+    border-color: var(--gold);
+    transform: scale(1.1);
+}
+
+/* Mobile Nav Overlay Backdrop */
+.nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.nav-backdrop.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Hero Section with Arched Frame */
+.hero {
+    min-height: 85svh;
+    height: auto;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0, 43, 35, 0.5)), url('img/tealto.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 6rem 2rem 5rem;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: var(--cream);
+    clip-path: ellipse(60% 100% at 50% 100%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: clamp(1px, 1vw, 4px);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    text-shadow: 0 8px 25px rgba(0,0,0,0.8);
+    animation: fadeInDown 1.2s ease-out;
+}
+
+.hero .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    margin-bottom: 2.5rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    animation: fadeInUp 1.2s ease-out 0.2s both;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+    color: var(--gold);
+    padding: 1.1rem 2.8rem;
+    border: 2px solid var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transition);
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    min-height: 48px;
+    border-radius: 4px;
+    touch-action: manipulation;
+}
+
+.btn:hover, .btn:focus-visible {
+    background-color: var(--gold);
+    color: var(--green);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* Sections */
+section {
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.section-alt {
+    background-color: rgba(197, 160, 89, 0.04);
+    max-width: 100%;
+    width: 100%;
+}
+
+.section-alt .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title h1, .section-title h2 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 0.8rem;
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+.section-title .subtitle {
+    font-style: italic;
+    color: #666;
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Mandala decoration */
+.mandala-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0c2.8 0 5.1 2.3 5.1 5.1S52.8 10.2 50 10.2s-5.1-2.3-5.1-5.1S47.2 0 50 0zm0 89.8c2.8 0 5.1 2.3 5.1 5.1s-2.3 5.1-5.1 5.1-5.1-2.3-5.1-5.1 2.3-5.1 5.1-5.1zM0 50c0-2.8 2.3-5.1 5.1-5.1s5.1 2.3 5.1 5.1-2.3 5.1-5.1 5.1S0 52.8 0 50zm89.8 0c0-2.8 2.3-5.1 5.1-5.1s5.1 2.3 5.1 5.1-2.3 5.1-5.1 5.1-5.1-2.3-5.1-5.1zM14.6 14.6c2-2 5.2-2 7.2 0s2 5.2 0 7.2-5.2 2-7.2 0-2-5.2 0-7.2zm63.6 63.6c2-2 5.2-2 7.2 0s2 5.2 0 7.2-5.2 2-7.2 0-2-5.2 0-7.2zM14.6 85.4c-2-2-2-5.2 0-7.2s5.2-2 7.2 0 2 5.2 0 7.2-5.2 2-7.2 0zM85.4 14.6c2 2 2 5.2 0 7.2s-5.2 2-7.2 0-2-5.2 0-7.2 5.2-2 7.2 0z' fill='%23C5A059'/%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%23C5A059' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* Arched Cards */
+.card {
+    background: var(--white);
+    padding: 3.5rem 2.5rem;
+    border-radius: 100px 100px 20px 20px;
+    border: 2px solid var(--gold);
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    border: 1px solid var(--gold-light);
+    border-radius: 93px 93px 13px 13px;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 43, 35, 0.12);
+    border-color: var(--gold);
+}
+
+.card h3 {
+    margin-bottom: 1.2rem;
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    color: var(--green);
+}
+
+/* Arched Images */
+.arched-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 120px 120px 20px 20px;
+    border: 3px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: var(--transition);
+}
+
+.arched-img:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
+}
+
+/* Story section flex wrapper */
+.story-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.story-text {
+    flex: 1 1 300px;
+}
+
+.story-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.15rem;
+}
+
+.story-text p:last-child {
+    margin-bottom: 0;
+}
+
+.story-image {
+    flex: 1 1 300px;
+}
+
+/* Shabbat Highlights */
+.shabbat-card {
+    background: linear-gradient(145deg, #ffffff 0%, #fbf8f0 100%);
+    border: 2px solid var(--gold);
+    border-radius: 100px 100px 20px 20px;
+    padding: 4rem 3rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 43, 35, 0.08);
+    text-align: center;
+    margin: 4.5rem auto 0;
+    max-width: 900px;
+    transition: var(--transition);
+}
+
+.shabbat-card::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    border: 1px solid var(--gold);
+    border-radius: 93px 93px 13px 13px;
+    pointer-events: none;
+}
+
+.shabbat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 43, 35, 0.12);
+}
+
+.shabbat-badge {
+    display: inline-block;
+    background-color: var(--green);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+.shabbat-card h3 {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    color: var(--green);
+    margin-bottom: 1.2rem;
+}
+
+.shabbat-card p {
+    font-size: 1.18rem;
+    line-height: 1.85;
+    color: #333;
+    max-width: 780px;
+    margin: 0 auto 1.3rem;
+}
+
+.shabbat-card .shabbat-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin: 2.2rem 0;
+    text-align: left;
+}
+
+.shabbat-feature-item {
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    border-radius: 0 10px 10px 0;
+}
+
+.shabbat-feature-item strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    color: var(--green);
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+}
+
+.shabbat-feature-item span {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.45;
+    display: block;
+}
+
+/* Contact CTAs */
+.contact-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 4rem;
+}
+
+.contact-cta-group .btn {
+    min-width: 220px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--green);
+    color: var(--gold-light);
+    padding: 6rem 2rem 3rem;
+    border-top: 5px solid var(--gold);
+    position: relative;
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50l10-10 10 10-10 10-10-10z' fill='%23d4af37' fill-opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.footer-logo {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.footer-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.footer-logo-text:hover {
+    transform: scale(1.03);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.footer-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-section h3 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    color: var(--gold-light);
+    font-size: 1.2rem;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+}
+
+.social-link:hover, .social-link:focus-visible {
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem;
+    z-index: 1100;
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+    border-radius: 4px;
+}
+
+.mobile-nav-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+}
+
+.mobile-nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background-color: var(--gold);
+    margin: 5px 0;
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.mobile-nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.mobile-nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+======================================================== */
+
+/* Tablet & Mobile Nav Drawer (<= 992px) */
+@media (max-width: 992px) {
+    nav {
+        padding: 0 1.5rem;
+    }
+
+    .mobile-nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(340px, 85vw);
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--green);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 6rem 2rem 3rem;
+        gap: 3rem;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+        border-left: 2px solid var(--gold);
+        z-index: 999;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-container.active {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.25rem;
+        padding: 0.8rem 1.5rem;
+        display: block;
+        border-radius: 8px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .nav-links a:hover, .nav-links a:active {
+        background: rgba(212, 175, 55, 0.1);
+        color: var(--gold-light);
+    }
+
+    .lang-switcher {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(197, 160, 89, 0.3);
+        padding-top: 2rem;
+        width: 100%;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .lang-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Standard Mobile (<= 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 0.6rem 0;
+    }
+
+    .logo-text {
+        font-size: 1.7rem;
+    }
+
+    .hero {
+        min-height: 80svh;
+        padding: 5rem 1.2rem 4rem;
+    }
+
+    .hero::after {
+        height: 70px;
+    }
+
+    .btn {
+        padding: 1rem 2.2rem;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+    }
+
+    section {
+        padding: 5rem 1.2rem;
+    }
+
+    .section-title {
+        margin-bottom: 3.5rem;
+    }
+
+    .mandala-icon {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 1.2rem;
+    }
+
+    .grid {
+        gap: 1.8rem;
+    }
+
+    .card {
+        padding: 2.8rem 1.6rem;
+        border-radius: 80px 80px 16px 16px;
+    }
+
+    .card::before {
+        border-radius: 73px 73px 10px 10px;
+    }
+
+    .arched-img {
+        height: 300px;
+        border-radius: 90px 90px 16px 16px;
+    }
+
+    .story-flex {
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .shabbat-card {
+        padding: 3rem 1.5rem;
+        border-radius: 70px 70px 16px 16px;
+        margin-top: 3.5rem;
+    }
+
+    .shabbat-card::before {
+        border-radius: 63px 63px 10px 10px;
+    }
+
+    .shabbat-card .shabbat-features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+
+    .contact-cta-group .btn {
+        width: 100%;
+    }
+
+    .footer-content {
+        gap: 3rem;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-logo-text {
+        font-size: 2.4rem;
+    }
+}
+
+/* Small Screens / Compact Phones (<= 480px) */
+@media (max-width: 480px) {
+    nav {
+        padding: 0 1rem;
+    }
+
+    .logo-text {
+        font-size: 1.45rem;
+    }
+
+    .hero {
+        padding: 4.5rem 1rem 3.5rem;
+    }
+
+    .hero .subtitle {
+        letter-spacing: 1px;
+    }
+
+    section {
+        padding: 4rem 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 2.2rem 1.2rem;
+        border-radius: 60px 60px 14px 14px;
+    }
+
+    .card::before {
+        border-radius: 53px 53px 8px 8px;
+    }
+
+    .arched-img {
+        height: 250px;
+        border-radius: 70px 70px 14px 14px;
+    }
+
+    .shabbat-card {
+        padding: 2.2rem 1.2rem;
+        border-radius: 60px 60px 14px 14px;
+    }
+
+    .shabbat-card::before {
+        border-radius: 53px 53px 8px 8px;
+    }
+
+    .shabbat-card p {
+        font-size: 1.05rem;
+        line-height: 1.65;
+    }
+
+    .footer-logo-text {
+        font-size: 2rem;
+    }
+
+    footer {
+        padding: 4.5rem 1.2rem 2.5rem;
+    }
+}
